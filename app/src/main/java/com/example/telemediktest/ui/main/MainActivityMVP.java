@@ -19,7 +19,7 @@ public interface MainActivityMVP {
 
         void setView(MainActivityMVP.View view);
 
-        void refreshButtonClicked();
+        void getDataFromServer();
 
 
     }

@@ -29,7 +29,7 @@ public class MainPresenter implements MainActivityMVP.Presenter {
     }
 
     @Override
-    public void refreshButtonClicked() {
+    public void getDataFromServer() {
 
         Call<Results> call = serviceAoiUser.getUsers();
 
@@ -37,16 +37,16 @@ public class MainPresenter implements MainActivityMVP.Presenter {
         Log.e("URL Called", call.request().url() + "");
 
         call.enqueue(new Callback<Results>() {
-        @Override
-        public void onResponse(Call<Results> call, Response<Results> response) {
-            Log.e("ERM",response.body().getData().get(0).getFirstName());
-        }
+            @Override
+            public void onResponse(Call<Results> call, Response<Results> response) {
+                mView.showData(response.body().getData());
+            }
 
-        @Override
-        public void onFailure(Call<Results> call, Throwable t) {
+            @Override
+            public void onFailure(Call<Results> call, Throwable t) {
 
-        }
-    });
+            }
+        });
 
     }
 
