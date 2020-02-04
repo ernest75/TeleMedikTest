@@ -11,17 +11,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainActivityMVP.View{
 
+
+    MainActivityMVP.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPresenter = new MainPresenter(this);
+        mPresenter.setView(this);
+        mPresenter.refreshButtonClicked();
     }
 
 
 
     @Override
     public void showData(List<User> users) {
-
 
 
     }

@@ -1,4 +1,4 @@
-package com.networking;
+package com.example.telemediktest.networking;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

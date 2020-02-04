@@ -1,12 +1,13 @@
-package com.example.telemediktest.model;
 
+package com.example.telemediktest.model;
 
 import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Data implements Serializable {
+public class Results implements Serializable
+{
 
     @SerializedName("page")
     @Expose
@@ -20,10 +21,10 @@ public class Data implements Serializable {
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
-    @SerializedName("users")
+    @SerializedName("data")
     @Expose
-    private List<User> users = null;
-    private final static long serialVersionUID = 3950625371412983576L;
+    private List<User> data = null;
+    private final static long serialVersionUID = -7122362399376271478L;
 
     public Integer getPage() {
         return page;
@@ -57,12 +58,12 @@ public class Data implements Serializable {
         this.totalPages = totalPages;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getData() {
+        return data;
     }
 
-    public void setUsers(List<User> users) {
-        this.users  = this.users;
+    public void setData(List<User> data) {
+        this.data = data;
     }
 
 }

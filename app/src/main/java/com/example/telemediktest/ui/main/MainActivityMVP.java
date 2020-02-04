@@ -21,7 +21,6 @@ public interface MainActivityMVP {
 
         void refreshButtonClicked();
 
-        void onGnomeCellClicked(User user);
 
     }
 
