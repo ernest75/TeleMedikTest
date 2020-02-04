@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityMVP.V
 
     @Override
     public void showData(List<User> users) {
-        if (mainAdapter != null) {
-            mainAdapter.clear();
-        }
+
         mainAdapter = new MainAdapter(users, mContext);
         rvUsers.setLayoutManager(new LinearLayoutManager(mContext));
         rvUsers.setAdapter(mainAdapter);

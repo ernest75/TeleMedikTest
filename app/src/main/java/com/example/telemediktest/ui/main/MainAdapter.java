@@ -7,19 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 import com.example.telemediktest.R;
 import com.example.telemediktest.model.User;
 import com.example.telemediktest.ui.glide.GlideApp;
-
+import com.example.telemediktest.ui.listeners.ItemClickListener;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
@@ -49,6 +45,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 .with(mContext)
                 .load(user.getAvatar())
                 .into(holder.mUserAvatar);
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(mContext,user.getEmail(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -56,21 +59,29 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return mUserList.size();
     }
 
-    public void clear() {
-        mUserList = null;
-    }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView mUserName;
         ImageView mUserAvatar;
 
+        public ItemClickListener mItemClickListener;
+
         ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mUserName = itemView.findViewById(R.id.tvUserNAme);
             mUserAvatar = itemView.findViewById(R.id.ivUserAvatar);
 
         }
 
+        public void setItemClickListener(ItemClickListener itemClickListener){
+            mItemClickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            mItemClickListener.onClick(view,getAdapterPosition());
+        }
     }
 }
