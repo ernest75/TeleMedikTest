@@ -8,7 +8,7 @@ public interface MainActivityMVP {
 
     interface View {
 
-        void showData(List<User> gnomes);
+        void showData(List<User> users);
 
         void showProgressbar();
 
