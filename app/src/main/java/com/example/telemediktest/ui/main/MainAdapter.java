@@ -56,6 +56,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         return mUserList.size();
     }
 
+    public void clear() {
+        mUserList = null;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mUserName;

@@ -31,6 +31,8 @@ public class MainPresenter implements MainActivityMVP.Presenter {
     @Override
     public void getDataFromServer() {
 
+        mView.showProgressbar();
+
         Call<Results> call = serviceAoiUser.getUsers();
 
         //Log the URL called
@@ -39,6 +41,7 @@ public class MainPresenter implements MainActivityMVP.Presenter {
         call.enqueue(new Callback<Results>() {
             @Override
             public void onResponse(Call<Results> call, Response<Results> response) {
+                mView.hideProgressbar();
                 mView.showData(response.body().getData());
             }
 

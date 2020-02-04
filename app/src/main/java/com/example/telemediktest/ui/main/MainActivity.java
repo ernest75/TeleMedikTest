@@ -2,9 +2,9 @@ package com.example.telemediktest.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityMVP.V
     Button btnRefreshData;
     @BindView(R.id.btnShowMap)
     Button btnShowMap;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityMVP.V
 
     @Override
     public void showData(List<User> users) {
-        mainAdapter = new MainAdapter(users,mContext);
+        if (mainAdapter != null) {
+            mainAdapter.clear();
+        }
+        mainAdapter = new MainAdapter(users, mContext);
         rvUsers.setLayoutManager(new LinearLayoutManager(mContext));
         rvUsers.setAdapter(mainAdapter);
 
@@ -57,18 +62,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityMVP.V
 
     @Override
     public void showProgressbar() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressbar() {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.btnRefreshData, R.id.btnShowMap})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnRefreshData:
+                rvUsers.setAdapter(null);
+                mPresenter.getDataFromServer();
                 break;
             case R.id.btnShowMap:
                 break;
