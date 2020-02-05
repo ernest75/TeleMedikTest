@@ -1,4 +1,4 @@
-package com.example.telemediktest.ui.main;
+package com.example.telemediktest.ui.screens.main;
 
 import com.example.telemediktest.model.User;
 

@@ -1,4 +1,4 @@
-package com.example.telemediktest.ui.main;
+package com.example.telemediktest.ui.screens.main;
 
 import android.content.Context;
 import android.util.Log;
